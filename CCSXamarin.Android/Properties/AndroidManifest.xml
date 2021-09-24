@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0" package="com.companyname.ccsxamarin" android:installLocation="auto" android:versionCode="9">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="com.android.vending.BILLING" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<supports-screens android:smallScreens="false" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" />
+	<application android:label="CCSXamarin.Android" android:theme="@style/MyTheme" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:debuggable="false">
+		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-4377533152176814~3052100481" />
+	</application>
+</manifest>

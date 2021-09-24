@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:customRenderer="clr-namespace:CCSXamarin;assembly=CCSXamarin"
+             xmlns:ads="clr-namespace:CCSXamarin.Controls" 
+             Title="Set Goals"
+             x:Class="CCSXamarin.SetGoals">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#e8e7e3" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <ScrollView x:Name="mainScrollViewer" Grid.Row="0" Margin="0,0,0,0">
+                    <StackLayout Margin="20,20,20,0">
+
+                        <Frame BorderColor="Black" BackgroundColor="Black" Padding="1" HasShadow="True" CornerRadius="5" Margin="0,0,0,0">
+                            <Frame Padding="15" BackgroundColor="WhiteSmoke" Margin="1">
+                                <Grid RowSpacing="0" Margin="1,1,1,1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Calories" FontSize="22" TextColor="Black" FontAttributes="Bold" Grid.ColumnSpan="2" Margin="0,0,0,3"/>
+                                    <BoxView HeightRequest="1" BackgroundColor="Black" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                                    <StackLayout Grid.Row="2" Margin="0,10,0,0">
+                                        <Label Text="Minimum Calories:" FontSize="18" TextColor="Black"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMinCalories" Placeholder="e.g: 2000" FontSize="16" MaxLength="4" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+
+                                        <Label Text="Maximum Calories:" FontSize="18" TextColor="Black" Margin="0,5,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMaxCalories" Placeholder="e.g: 2200" FontSize="16" MaxLength="4" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+
+                        <Frame BackgroundColor="Black" Padding="1" HasShadow="True" CornerRadius="5" Margin="0,15,0,0">
+                            <Frame BackgroundColor="WhiteSmoke" Padding="15" Margin="1">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="1"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Macronutrients" FontSize="22" TextColor="Black" FontAttributes="Bold" Grid.ColumnSpan="2" Margin="0,0,0,3"/>
+                                    <BoxView HeightRequest="1" BackgroundColor="Black" Grid.Row="2" Grid.ColumnSpan="2"/>
+                                    <StackLayout Grid.Row="3">
+
+                                        <Label Text="Minimum Fat(g):" FontSize="18" TextColor="Black" Margin="0,10,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMinFat" Placeholder="e.g: 66" FontSize="16" MaxLength="3" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+
+                                        <Label Text="Maximum Fat(g):" FontSize="18" TextColor="Black" Margin="0,5,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMaxFat" Placeholder="e.g: 73" FontSize="16" MaxLength="3"  Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+
+                                        <Label Text="Minimum Carbs(g):" FontSize="18" TextColor="Black" Margin="0,15,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMinCarbs" Placeholder="e.g: 225" FontSize="16" MaxLength="3" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+
+                                        <Label Text="Maximum Carbs(g):" FontSize="18" TextColor="Black" Margin="0,5,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMaxCarbs" Placeholder="e.g.: 300" FontSize="16" MaxLength="3" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+
+                                        <Label Text="Minimum Protein(g):" FontSize="18" TextColor="Black" Margin="0,15,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMinProtein" Placeholder="e.g: 80" FontSize="16" MaxLength="3" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+
+                                        <Label Text="Maximum Protein(g):" FontSize="18" TextColor="Black" Margin="0,5,0,0"/>
+                                        <Frame Padding="1" BackgroundColor="Black">
+                                            <Frame Padding="0" Margin="1">
+                                                <Entry x:Name="txtMaxProtein" Placeholder="e.g: 100" FontSize="16" MaxLength="3" Margin="5,0,5,0" Completed="txt_TextCompleted"/>
+                                            </Frame>
+                                        </Frame>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Frame>
+
+                        <Label x:Name="lblError" Margin="5,10,5,0" Text="This is a test error." TextColor="Red" IsVisible="False"/>
+
+                        <StackLayout x:Name="buttonStackLayout" Orientation="Horizontal" Margin="0, 10, 0, 20" VerticalOptions="CenterAndExpand">
+                            <Frame x:Name="saveFrame" Padding="1" BackgroundColor="#FF1083E8" HorizontalOptions="StartAndExpand" CornerRadius="5">
+                                <Grid>
+                                    <Label Text="Save" FontSize="28" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Button x:Name="btnSave" BackgroundColor="Transparent" HeightRequest="60" WidthRequest="150" Clicked="btnSave_Clicked" Pressed="btnSave_Pressed" Released="btnSave_Released"/>
+                                </Grid>
+                            </Frame>
+                            <Frame x:Name="helpFrame" Padding="1" BackgroundColor="#FF1083E8" HorizontalOptions="EndAndExpand" CornerRadius="5">
+                                <Grid>
+                                    <Label Text="Help" FontSize="28" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Button x:Name="btnHelp" BackgroundColor="Transparent" HeightRequest="60" WidthRequest="150" Clicked="btnHelp_Clicked" Pressed="btnHelp_Pressed" Released="btnHelp_Released"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+                
+            </Grid>
+
+            <ads:AdmobControl x:Name="bottomAd" VerticalOptions="End" Grid.Row="1"/>
+
+
+            <ContentView x:Name="helpPopUp" BackgroundColor="#C0808080" Margin="0,-7,0,0" IsVisible="False">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout HeightRequest="130" WidthRequest="250" BackgroundColor="White">
+                        <StackLayout Margin="10,10,10,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Help" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+                                <Grid x:Name="closeHelpPopUpGrid" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="0,0,-7,0">
+                                    <Label Text="&#xf057;" FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="{StaticResource FontAwesomeRegular}"  Margin="2,0,0,0"/>
+                                    <Button BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" Clicked="btnClosePopUp_Clicked" Pressed="btnClosePopUp_Pressed" Released="btnClosePopUp_Released"/>
+                                </Grid>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="Black"/>
+                            <Label Text="Use this page to set a goal for how many calories and macronutrients you want to eat each day." Margin="0,10,0,0"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView x:Name="successPopUp" BackgroundColor="#C0808080" Margin="0,-7,0,0" IsVisible="False">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout HeightRequest="150" WidthRequest="280" BackgroundColor="White">
+                        <StackLayout Margin="10,10,10,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Goals Saved!" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+                                <Grid x:Name="closeSuccessPopUpGrid" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="0,0,-7,0">
+                                    <Label Text="&#xf057;" FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="{StaticResource FontAwesomeRegular}"  Margin="2,0,0,0"/>
+                                    <Button BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" Clicked="btnClosePopUp_Clicked" Pressed="btnClosePopUp_Pressed" Released="btnClosePopUp_Released"/>
+                                </Grid>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="Black"/>
+                            <Label Text="Would you like to start logging food now?" Margin="0,10,0,0"/>
+                            <Grid x:Name="logFoodPopUpGrid" BackgroundColor="#FF1083E8" HorizontalOptions="Start" WidthRequest="100" HeightRequest="40" Margin="0,10,0,0" VerticalOptions="Center">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="Log Food" TextColor="White" FontSize="16"/>
+                                    <Label Text="&#xf303;" FontSize="16" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid}" Margin="0,1,0,0"/>
+                                </StackLayout>
+                                <Button BackgroundColor="Transparent" Clicked="btnGoToLogFood_Clicked" Pressed="btnGoToLogFood_Pressed" Released="btnGoToLogFood_Released"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

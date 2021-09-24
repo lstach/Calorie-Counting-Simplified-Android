@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ads="clr-namespace:CCSXamarin.Controls" 
+             mc:Ignorable="d"
+             x:Class="CCSXamarin.Settings">
+    <ContentPage.Content>
+        <Grid BackgroundColor="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <ScrollView x:Name="mainScrollViewer" Margin="20,10,20,0">
+                    <StackLayout>
+                        <Label Text="Settings" TextColor="Black" FontAttributes="Bold" FontSize="25"/>
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
+                            <Label Text="Number of Saved Days:" FontSize="20" TextColor="Black" Margin="0,11,0,0"/>
+                            <Entry x:Name="txtSavedDays" TextColor="Black" Margin="0,0,0,0" Placeholder="e.g: 10" MaxLength="2"/>
+                            <Grid x:Name="saveDaysInfoGrid" Margin="-3,0,0,0" WidthRequest="27" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start">
+                                <Label Text="&#xf059;" FontFamily="{StaticResource FontAwesomeRegular}" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Button BorderColor="Black" BorderWidth="0" BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" Clicked="btnSavedDaysInfo_Clicked" Pressed="btnSavedDaysInfo_Pressed" Released="btnSavedDaysInfo_Released"/>
+                            </Grid>
+                        </StackLayout>
+
+                        <Label x:Name="lblSavedDays" FontSize="17" Margin="0,-8,0,10" IsVisible="False"/>
+
+                        <Button Text="Save" HorizontalOptions="Start" BackgroundColor="#FF1083E8" Margin="0,-5,0,0" TextColor="White" FontSize="18" HeightRequest="45" VerticalOptions="Start" Clicked="btnSave_Clicked"/>
+
+                        <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Text="Delete all logged days" HeightRequest="45" BackgroundColor="Red" TextColor="White" FontSize="18" HorizontalOptions="Start" Clicked="btnDeleteDays_Clicked"/>
+                            <Grid x:Name="deleteDaysInfoGrid" Margin="-3,0,0,0" WidthRequest="27" HeightRequest="30" HorizontalOptions="Start" VerticalOptions="Start">
+                                <Label Text="&#xf059;" FontFamily="{StaticResource FontAwesomeRegular}" FontSize="16" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Button BorderColor="Black" BorderWidth="0" BackgroundColor="Transparent" VerticalOptions="Center" Margin="0,0,0,0" Clicked="btnDeleteDaysInfo_Clicked" Pressed="btnDeleteDaysInfo_Pressed" Released="btnDeleteDaysInfo_Released"/>
+                            </Grid>
+                        </StackLayout>
+
+                        <Label x:Name="lblDeleteAllDays" FontSize="17" Margin="0,5,0,-6" IsVisible="False"/>
+
+                        <BoxView BackgroundColor="DimGray" HeightRequest="1" Margin="0,10,0,0"/>
+
+                        <Label Text="About" TextColor="Black" FontAttributes="Bold" FontSize="25"/>
+
+                        <Grid x:Name="removeAdsGrid" HorizontalOptions="Start" HeightRequest="30" Margin="0,5,0,0">
+                            <Label Text="Purchase the ad-free version!" FontSize="18" TextDecorations="Underline" TextColor="Blue"/>
+                            <Button BorderColor="Black" BorderWidth="0" BackgroundColor="Transparent" Clicked="btnRemoveAds_Clicked"/>
+                        </Grid>
+
+                        <Grid HorizontalOptions="Start" HeightRequest="30" Margin="0,5,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Leave a review!" FontSize="18" TextDecorations="Underline" TextColor="Blue"/>
+                            </StackLayout>
+                            <Button BorderColor="Black" BorderWidth="0" BackgroundColor="Transparent" Clicked="btnReview_Clicked"/>
+                        </Grid>
+
+                        <Label Text="Developer Contact: Logan Stach" FontSize="18" TextColor="Black" Margin="0,10,0,0"/>
+                        <Grid HorizontalOptions="Start" HeightRequest="30">
+                            <Label Text="loganstachdev@gmail.com" FontSize="18" TextDecorations="Underline" TextColor="Blue"/>
+                            <Button BorderColor="Black" BorderWidth="0" BackgroundColor="Transparent" Clicked="btnEmail_Clicked"/>
+                        </Grid>
+
+
+                    </StackLayout>
+                </ScrollView>
+                
+            </Grid>
+
+            <ads:AdmobControl x:Name="bottomAd" VerticalOptions="End" Grid.Row="1"/>
+
+            <ContentView x:Name="deletePopUp" BackgroundColor="#C0808080" Margin="0,-7,0,0" IsVisible="False">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout WidthRequest="250" BackgroundColor="White">
+                        <StackLayout Margin="10,10,10,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Delete?" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+                                <Grid x:Name="deletePopUpGrid" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="0,0,-7,0">
+                                    <Label Text="&#xf057;" FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="{StaticResource FontAwesomeRegular}"  Margin="2,0,0,0"/>
+                                    <Button BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" Clicked="btnClosePopUp_Clicked" Pressed="btnClosePopUp_Pressed" Released="btnClosePopUp_Released"/>
+                                </Grid>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="Black"/>
+                            <Label Text="Are you sure you want to delete all previously logged days? This cannot be undone." Margin="0,10,0,0"/>
+                            <Button Text="Delete" BackgroundColor="Red" TextColor="White" Margin="0,5,0,10" HeightRequest="40" HorizontalOptions="Start" Clicked="btnDeleteDaysConfirm_Clicked"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

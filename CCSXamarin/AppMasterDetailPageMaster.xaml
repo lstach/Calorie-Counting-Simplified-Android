@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CCSXamarin.AppMasterDetailPageMaster"
+             Title="Master">
+  <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+    <ListView x:Name="MenuItemsListView" VerticalOptions="FillAndExpand"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+      <d:ListView.ItemsSource>
+          <x:Array Type="{x:Type x:String}">
+              <x:String>Page 1</x:String>
+              <x:String>Page 2</x:String>
+              <x:String>Page 3</x:String>
+              <x:String>Page 4</x:String>
+              <x:String>Page 5</x:String>
+          </x:Array>
+      </d:ListView.ItemsSource>
+      <ListView.Header>
+                <StackLayout x:Name="headerStackPanel" Orientation="Horizontal" BackgroundColor="#1867c7">
+                    <Grid x:Name="closeNavGrid">
+                        <Label Text="&#xf0c9;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="20" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Button BackgroundColor="Transparent" WidthRequest="50" HeightRequest="50" BorderColor="Black" Pressed="btnCloseNav_Pressed" Released="btnCloseNav_Released" Clicked="btnCloseNav_Clicked"/>
+                    </Grid>
+                    
+                </StackLayout>               
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" TextColor="Black" d:Text="{Binding .}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding Icon}" FontSize="16" VerticalTextAlignment="Center" TextColor="Black" FontFamily="{StaticResource FontAwesomeSolid}" Margin="2,0,0,0"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid x:Name="settingsGrid" Grid.Row="1" Margin="0,10,0,0">
+            <StackLayout>
+                <BoxView HeightRequest="1" BackgroundColor="DarkGray"/>
+                <StackLayout Margin="15,4,0,0" Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Settings and Info" TextColor="Black" FontSize="16" FontAttributes="Bold"/>
+                    <Label Text="&#xf013;" TextColor="Black" FontSize="16" VerticalOptions="Center"  Margin="0,2,0,0" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                </StackLayout>
+            </StackLayout>
+            <Button BackgroundColor="Transparent" HeightRequest="50" Clicked="btnSettings_Clicked" Pressed="btnSettings_Pressed" Released="btnSettings_Released"/>
+        </Grid>
+    </Grid>
+</ContentPage>
+    
+    

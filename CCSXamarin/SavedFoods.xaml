@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ads="clr-namespace:CCSXamarin.Controls"
+             mc:Ignorable="d"
+             x:Class="CCSXamarin.SavedFoods">
+    <ContentPage.Content>
+
+        <Grid x:Name="savedFoodsGrid" IsVisible="True" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <ListView x:Name="lstSavedFood" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="lstSavedFood_ItemTapped" Margin="0,0,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="{Binding GridColor}" RowSpacing="0" Margin="0,0,0,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding Name}" FontSize="16" TextColor="Black" FontAttributes="Bold" Margin="5,0,0,0"/>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" Margin="5,2,0,2">
+                                    <Label Text="Calories:" TextColor="Black"/>
+                                    <Label Text="{Binding Calories}" TextColor="Black"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="2" Margin="5,5,0,0" IsVisible="{Binding MacrosVisible}">
+                                    <Label Text="Fat(g):"/>
+                                    <Label Text="{Binding Fat}"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="3" Margin="5,5,0,0" IsVisible="{Binding MacrosVisible}">
+                                    <Label Text="Carbs(g):"/>
+                                    <Label Text="{Binding Carbs}"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="4" Margin="5,5,0,0" IsVisible="{Binding MacrosVisible}">
+                                    <Label Text="Protein(g):"/>
+                                    <Label Text="{Binding Protein}"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="5" Margin="5,5,0,0" IsVisible="{Binding MacrosVisible}">
+                                    <Label Text="Serving Size:" TextColor="Black"/>
+                                    <Label Text="{Binding ServingSize}" TextColor="Black"/>
+                                </StackLayout>
+
+                                <BoxView HeightRequest="1" WidthRequest="150" BackgroundColor="Gray" Grid.Row="6"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Grid BackgroundColor="WhiteSmoke" Grid.Row="1" VerticalOptions="End" ColumnSpacing="0" RowSpacing="0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid x:Name="logSavedFoodGrid" BackgroundColor="#1463c4">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,5,0">
+                        <Label Text="Log Food" TextColor="White" VerticalTextAlignment="Center"/>
+                        <Label Text="&#xf303;" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid}" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <Button BackgroundColor="Transparent" Clicked="btnLogSavedFood_Clicked" Pressed="btnLogFood_Pressed" Released="btnLogFood_Released"/>
+                </Grid>
+                <Grid x:Name="addNewFoodGrid" BackgroundColor="Green" Grid.Column="1">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,5,0">
+                        <Label Text="Add New Food" TextColor="White" />
+                        <Label Text="&#xf067;" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid}" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <Button BackgroundColor="Transparent" Clicked="btnAddNewFood_Clicked" Pressed="btnAddNewFood_Pressed" Released="btnAddNewFood_Released"/>
+                </Grid>
+                <Grid x:Name="deleteSavedFoodGrid" BackgroundColor="Red" Grid.Column="2">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,5,0">
+                        <Label Text="Delete" TextColor="White"/>
+                        <Label Text="&#xf2ed;" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid}" VerticalTextAlignment="Center"/>
+                    </StackLayout>
+                    <Button BackgroundColor="Transparent" Clicked="btnDeleteSavedFood_Clicked" Pressed="btnDelete_Pressed" Released="btnDelete_Released"/>
+                </Grid>
+            </Grid>
+
+            <ads:AdmobControl x:Name="bottomAd" Grid.Row="2" VerticalOptions="End" MinimumHeightRequest="0"/>
+
+            <ContentView x:Name="logSavedFoodPopUp" BackgroundColor="#C0808080" Margin="0,-7,0,0" IsVisible="False" Grid.RowSpan="2">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout WidthRequest="250" BackgroundColor="White">
+                        <StackLayout Margin="10,10,10,10">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Log Saved Food" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+                                <Grid x:Name="closeLogFoodPopUpGrid" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="0,0,-7,0">
+                                    <Label Text="&#xf057;" FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="{StaticResource FontAwesomeRegular}"/>
+                                    <Button BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" Clicked="btnClosePopUp_Clicked" Pressed="btnClosePopUp_Pressed" Released="btnClosePopUp_Released"/>
+                                </Grid>
+                            </StackLayout>
+                            <BoxView HeightRequest="1" BackgroundColor="Black"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.ColumnSpan="2">
+                                    <Label Text="What meal is this food a part of?" TextColor="Black" Margin="0,8,0,10"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout WidthRequest="90">
+                                            <Label x:Name="lblLogFoodSelectMeal" Text="Select Meal" FontSize="15" TextColor="Black" Margin="4,0,0,-35"/>
+                                            <Picker x:Name="logFoodMealPicker" VerticalOptions="Start" FontSize="15" Margin="0,0,0,0" SelectedIndexChanged="mealPicker_OnSelectedIndexChanged"/>
+                                        </StackLayout>
+                                        <Entry x:Name="txtServings" Placeholder="Servings" FontSize="15" HorizontalOptions="EndAndExpand" Margin="0,-10,10,0"/>
+                                    </StackLayout>
+                                    <Label x:Name="lblLogSavedFoodError" Text="Error" TextColor="Red" Margin="2,-7,0,0" IsVisible="False"/>
+                                </StackLayout>
+                            </Grid>
+                            <Grid x:Name="logFoodPopUpGrid" BackgroundColor="#FF1083E8" HorizontalOptions="Start" WidthRequest="100" HeightRequest="40" Margin="0,10,0,0" VerticalOptions="Center">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="Log Food" TextColor="White" FontSize="16"/>
+                                    <Label Text="&#xf303;" FontSize="16" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid}" Margin="0,1,0,0"/>
+                                </StackLayout>
+                                <Button BackgroundColor="Transparent" Clicked="btnLogSavedFoodPopUp_Clicked" Pressed="btnLogFood_Pressed" Released="btnLogFood_Released"/>
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView x:Name="addNewFoodPopUp" BackgroundColor="#C0808080" Margin="0,-7,0,0" IsVisible="False" Grid.RowSpan="3">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,10,0,10">
+                    <StackLayout x:Name="addNewFoodPopUpStackPanel" WidthRequest="225" BackgroundColor="White">
+                        <ScrollView Margin="10,10,10,10">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Add New Food" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+                                    <Grid x:Name="closeAddNewFoodPopUpGrid" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="0,0,-7,0">
+                                        <Label Text="&#xf057;" FontSize="16" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="{StaticResource FontAwesomeRegular}"/>
+                                        <Button BackgroundColor="Transparent" WidthRequest="30" HeightRequest="30" Clicked="btnClosePopUp_Clicked" Pressed="btnClosePopUp_Pressed" Released="btnClosePopUp_Released"/>
+                                    </Grid>
+                                </StackLayout>
+                                <BoxView HeightRequest="1" BackgroundColor="Black"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout>
+                                        <Entry x:Name="txtNewFoodName" FontSize="14" Placeholder="Name" TextColor="Black" WidthRequest="170" Margin="0,-5,0,-5" MaxLength="20" Completed="txtTextCompleted"/>
+                                        <Entry x:Name="txtNewFoodCalories" FontSize="14" Placeholder="Calories" TextColor="Black" MaxLength="4" WidthRequest="50" Margin="0,0,0,-5" Completed="txtTextCompleted"/>
+                                        <Entry x:Name="txtNewFoodFat" FontSize="14" Placeholder="Fat(g):" TextColor="Black" MaxLength="3" WidthRequest="50" Margin="0,0,0,-5" Completed="txtTextCompleted"/>
+                                        <Entry x:Name="txtNewFoodCarbs" FontSize="14" Placeholder="Carbs(g):" TextColor="Black" MaxLength="3" WidthRequest="50" Margin="0,0,0,-5" Completed="txtTextCompleted"/>
+                                        <Entry x:Name="txtNewFoodProtein" FontSize="14" Placeholder="Protein(g):" TextColor="Black" MaxLength="3" WidthRequest="50" Margin="0,0,0,-5" Completed="txtTextCompleted"/>
+                                        <Entry x:Name="txtServingSize" FontSize="14" Placeholder="Serving Size (e.g. '1 cup')" TextColor="Black" WidthRequest="50" Margin="0,0,0,-5" />
+                                    </StackLayout>
+                                </Grid>
+
+                                <Label x:Name="lblAddNewFoodError" TextColor="Red" Margin="3,-5,0,0" IsVisible="True"/>
+
+                                <Grid x:Name="addNewFoodPopUpGrid" BackgroundColor="Green" HorizontalOptions="Start" VerticalOptions="End">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Label Text="Add Food" TextColor="White"/>
+                                        <Label Text="&#xf067;" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid}" Margin="0,1,0,0"/>
+                                    </StackLayout>
+                                    <Button BackgroundColor="Transparent" Clicked="btnAddNewFoodPopUp_Clicked" Pressed="btnAddNewFood_Pressed" Released="btnAddNewFood_Released"/>
+                                </Grid>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+
+           
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
